@@ -1,0 +1,46 @@
+{
+  "name": "alteryx-backend",
+  "version": "1.0.0",
+  "description": "## Environment:",
+  "main": "src/index.js",
+  "scripts": {
+    "build": "rm -rf ./build && tsc",
+    "eslint": "eslint",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Artmadiar/alteryx_test_project_be.git"
+  },
+  "author": "artmadiar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Artmadiar/alteryx_test_project_be/issues"
+  },
+  "homepage": "https://github.com/Artmadiar/alteryx_test_project_be#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.13.10",
+    "@babel/core": "^7.13.10",
+    "@babel/eslint-parser": "^7.13.10",
+    "@babel/plugin-transform-runtime": "^7.13.10",
+    "@babel/preset-env": "^7.13.12",
+    "@types/body-parser": "^1.19.0",
+    "@types/dotenv": "^8.2.0",
+    "@types/express": "^4.17.11",
+    "@types/express-pino-logger": "^4.0.2",
+    "@types/pino": "^6.3.6",
+    "babel-jest": "^26.6.3",
+    "eslint": "^7.22.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "expect": "^26.6.2",
+    "jest": "^26.6.3",
+    "pino-pretty": "^4.7.1"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-pino-logger": "^6.0.0",
+    "pino": "^6.11.2"
+  }
+}

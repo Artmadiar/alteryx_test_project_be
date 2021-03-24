@@ -1,0 +1,20 @@
+{
+  "parser"  : "@babel/eslint-parser",
+  "plugins": [
+    "import"
+  ],
+  "extends" : ["airbnb"],
+  "settings": {
+    "import/ignore": [
+      "node_modules",
+      "\\.json$"
+    ],
+    "import/parser": "@babel/eslint-parser",
+    "import/resolve": {
+      "extensions": [
+        ".js",
+        ".json"
+      ]
+    }
+  }
+}
