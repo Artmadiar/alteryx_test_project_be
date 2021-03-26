@@ -12,11 +12,10 @@ export const validateCreation: ValidationChain[] = [
 
 export const validateUpdating: ValidationChain[] = [
   param('id').notEmpty().isUUID().withMessage('ID is wrong'),
-  body('email').isEmail().withMessage('Email is wrong'),
-  body('firstName').notEmpty().withMessage('First Name is wrong'),
-  body('lastName').notEmpty().withMessage('Last Name is wrong'),
-  body('password')
-    .notEmpty().withMessage('Password is required')
+  body('email').optional({ nullable: true }).isEmail().withMessage('Email is wrong'),
+  body('firstName').optional({ nullable: true }),
+  body('lastName').optional({ nullable: true }),
+  body('password').optional({ nullable: true })
     .isLength({ min: 6 }).withMessage('Password is wrong'),
 ];
 
