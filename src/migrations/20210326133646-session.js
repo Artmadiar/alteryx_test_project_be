@@ -18,6 +18,7 @@ module.exports = {
       token: {
         type: Sequelize.UUID,
         allowNull: false,
+        defaultValue: Sequelize.UUIDV4,
       },
       expiresAt: {
         type: Sequelize.DATE,

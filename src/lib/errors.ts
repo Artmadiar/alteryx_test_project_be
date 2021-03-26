@@ -25,6 +25,14 @@ export class DuplicateResource extends ServerError {
   }
 }
 
+export class Unauthorized extends ServerError {
+  status = 403
+
+  constructor(message = 'Unauthorized') {
+    super(message)
+  }
+}
+
 export class InvalidRequest extends ServerError {
   status = 400
 

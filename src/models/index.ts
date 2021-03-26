@@ -1,19 +1,14 @@
 import User from './user'
-// import Session from './session'
-// import RefreshToken from './refreshToken'
+import Session from './session'
 
 const models = {
   User,
-  // RefreshToken,
-  // Session,
+  Session,
 }
 
-Object.entries(models).map(([, model]) => {
-  // if (model?.associate) {
-  //   model.associate(models)
-  // }
-  return model
-})
+// associate
+User.hasMany(Session)
+Session.belongsTo(User)
 
 export default models
 

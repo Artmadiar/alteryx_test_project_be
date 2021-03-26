@@ -17,6 +17,7 @@ const sequelize = new Sequelize.Sequelize(
 const db = {
   sequelize,
   Sequelize,
+  Op: Sequelize.Op,
 }
 
 export default db

@@ -122,8 +122,5 @@ User.addHook('beforeUpdate', (instance: UserInstance) => {
   }
 })
 
-// User.associate = (models) => {
-//   User.hasMany(models.Session, { foreignKey: 'userId' })
-// }
 
 export default User

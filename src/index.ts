@@ -1,14 +1,16 @@
+import { createServer } from 'http'
 import express from 'express'
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
 import compression from 'compression'
 
-import config from './config'
-import { expressLogger } from './lib/logger'
+import config, { isTest } from './config'
+import logger, { expressLogger } from './lib/logger'
 import router from './router'
 
 
 const app = express()
+const httpServer = createServer(app)
 
 if (config.server.cors.enable) {
   app.use(cors())
@@ -20,5 +22,11 @@ app.use(cookieParser())
 app.use(compression())
 
 app.use(router)
+
+if (!isTest) {
+  httpServer.listen(config.server.port, () => {
+    logger.info(`Server is running on ${config.server.port} port`);
+  });
+}
 
 export default app
