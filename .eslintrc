@@ -15,6 +15,9 @@
         ".js",
         ".json"
       ]
+    },
+    "react": {
+      "version": "latest"
     }
   }
 }
