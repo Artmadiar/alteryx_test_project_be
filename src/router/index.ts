@@ -1,7 +1,7 @@
 import { Router, Request, Response, NextFunction } from 'express'
 import { json as jsonBodyParser, urlencoded as urlEncodedBodyParser } from 'body-parser'
 
-import { ServerError } from '../lib/errors'
+import { InternalError } from '../lib/errors'
 import Context from './middleware/context'
 import user from './user'
 import auth from './auth'
@@ -28,7 +28,7 @@ router.use((req: Request, res: Response, next: NextFunction) => {
 })
 
 // error handler
-router.use((error: ServerError | any, req: Request, res: Response, next: NextFunction) => {
+router.use((error: InternalError | any, req: Request, res: Response, next: NextFunction) => {
   return res.status(error.status || 500).json({
     error: error.message || 'Internal Error',
   });

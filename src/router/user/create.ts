@@ -2,13 +2,13 @@ import { NextFunction, Request, Response } from 'express'
 import { validationResult } from 'express-validator'
 
 import models from '../../models'
-import { InvalidRequest, DuplicateResource } from '../../lib/errors'
+import { InvalidRequestError, DuplicateResourceError } from '../../lib/errors'
 
 export default async (req: Request, res: Response, next: NextFunction) => {
   try {
     const validation = validationResult(req);
     if (!validation.isEmpty()) {
-      throw new InvalidRequest(validation)
+      throw new InvalidRequestError(validation)
     }
 
     // validate on duplications
@@ -17,7 +17,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
         where: { email: req.body.email },
       });
       if (user) {
-        throw new DuplicateResource('Email is busy');
+        throw new DuplicateResourceError('Email is busy');
       }
     }
 

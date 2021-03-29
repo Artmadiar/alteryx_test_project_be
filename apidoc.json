@@ -1,0 +1,10 @@
+{
+  "name": "alteryx-rest-api",
+  "version": "1.0.0",
+  "title": "Alteryx API docs",
+  "url" : "http://localhost:3010/api/v1",
+  "template": {
+  	"withCompare": false,
+  	"withGenerator": true
+  }
+}

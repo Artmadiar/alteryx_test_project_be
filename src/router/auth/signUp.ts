@@ -3,13 +3,37 @@ import { validationResult } from 'express-validator'
 
 import models from '../../models'
 import db from '../../models/connect'
-import { InvalidRequest, DuplicateResource } from '../../lib/errors'
+import { InvalidRequestError, DuplicateResourceError } from '../../lib/errors'
 
+/**
+  @api {post} /auth/signup Sign Up
+  @apiGroup Auth
+  @apiDescription Sign up new user with email, full name and password
+
+  @apiParam {String} email It must be unique in the system
+  @apiParam {String} [firstName]
+  @apiParam {String} [lastName]
+  @apiParam {String} password It has to be at least 6 symbols
+
+  @apiSuccess {String} token Bearer token of the session
+  @apiSuccess {Date} expiresAt Expiration date
+
+  @apiSuccessExample {json} Success
+    HTTP/1.1 200 OK
+    {
+      "token": "23a73e41-056d-43b2-9d6d-9fe1243ee14b",
+      "expiresAt": "02/04/2021 14:12"
+    }
+
+    @apiUse InternalError
+    @apiUse InvalidRequestError
+    @apiUse DuplicateResourceError
+*/
 export default async (req: Request, res: Response, next: NextFunction) => {
   try {
     const validation = validationResult(req);
     if (!validation.isEmpty()) {
-      throw new InvalidRequest(validation)
+      throw new InvalidRequestError(validation)
     }
 
     // validate on duplications
@@ -18,7 +42,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
         where: { email: req.body.email },
       });
       if (user) {
-        throw new DuplicateResource('Email is busy');
+        throw new DuplicateResourceError('Email is busy');
       }
     }
 

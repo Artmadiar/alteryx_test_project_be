@@ -3,7 +3,7 @@ import parseBearerToken from 'parse-bearer-token'
 import isUUID from 'validator/lib/isUUID'
 import { ModelCtor } from 'sequelize'
 
-import { ServerError, Unauthorized } from '../../lib/errors'
+import { InternalError, UnauthorizedError } from '../../lib/errors'
 import models from '../../models'
 import db from '../../models/connect'
 import { UserInstance } from '../../models/user'
@@ -14,7 +14,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
   const Op = db.Op
 
   if (!token || !isUUID(token)) {
-    return next(new ServerError('Token is invalid'))
+    return next(new InternalError('Token is invalid'))
   }
 
   try {
@@ -34,7 +34,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
     })
 
     if (!session) {
-      return next(new Unauthorized())
+      return next(new UnauthorizedError())
     }
 
     const ctx = Context.get(req)
@@ -43,6 +43,6 @@ export default async (req: Request, res: Response, next: NextFunction) => {
 
     return next()
   } catch (error) {
-    throw new ServerError(error)
+    throw new InternalError(error)
   }
 }

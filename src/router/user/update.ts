@@ -2,13 +2,13 @@ import { NextFunction, Request, Response } from 'express'
 import { validationResult } from 'express-validator'
 
 import models from '../../models'
-import { NotFound, InvalidRequest } from '../../lib/errors'
+import { NotFoundError, InvalidRequestError } from '../../lib/errors'
 
 export default async (req: Request, res: Response, next: NextFunction) => {
   try {
     const validation = validationResult(req);
     if (!validation.isEmpty()) {
-      throw new InvalidRequest(validation)
+      throw new InvalidRequestError(validation)
     }
 
     const user = await models.User.findOne({
@@ -16,7 +16,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
     })
       
     if (!user) {
-      throw new NotFound('User not found')
+      throw new NotFoundError('User not found')
     }
     if ('email' in req.body) {
       user.setDataValue('email', req.body.email);

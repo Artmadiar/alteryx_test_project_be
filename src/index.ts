@@ -3,6 +3,7 @@ import express from 'express'
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
 import compression from 'compression'
+import path from 'path'
 
 import config, { isTest } from './config'
 import logger, { expressLogger } from './lib/logger'
@@ -21,7 +22,9 @@ app.use(cookieParser())
 
 app.use(compression())
 
-app.use(router)
+app.use(express.static(path.resolve(__dirname, 'public')))
+
+app.use('/api/v1', router)
 
 if (!isTest) {
   httpServer.listen(config.server.port, () => {

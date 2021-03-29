@@ -1,15 +1,14 @@
 import { NextFunction, Request, Response } from 'express'
 import { validationResult } from 'express-validator'
 
-import { InvalidRequest, Unauthorized } from '../../lib/errors'
-import Context from '../middleware/context'
+import { InvalidRequestError, UnauthorizedError } from '../../lib/errors'
 import models from '../../models'
 
 export default async (req: Request, res: Response, next: NextFunction) => {
   try {
     const validation = validationResult(req);
     if (!validation.isEmpty()) {
-      throw new InvalidRequest(validation)
+      throw new InvalidRequestError(validation)
     }
 
     const user = await models.User.findOne({
@@ -18,12 +17,12 @@ export default async (req: Request, res: Response, next: NextFunction) => {
     })
 
     if (!user) {
-      throw new Unauthorized()
+      throw new UnauthorizedError()
     }
     
     const match = await user.comparePassword(req.body.password)
     if (!match) {
-      throw new Unauthorized()
+      throw new UnauthorizedError()
     }
 
     const session = await models.Session.create({
