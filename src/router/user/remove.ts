@@ -3,6 +3,18 @@ import { validationResult } from 'express-validator'
 import models from '../../models'
 import { NotFoundError, InvalidRequestError } from '../../lib/errors'
 
+/**
+  @api {delete} /user/:id Delete
+  @apiGroup User
+  @apiDescription Delete user
+
+  @apiSuccessExample {json} Success
+    HTTP/1.1 204 OK
+
+    @apiUse InternalError
+    @apiUse InvalidRequestError
+    @apiUse NotFoundError
+*/
 export default async (req: Request, res: Response, next: NextFunction) => {
   try {
     const validation = validationResult(req);
