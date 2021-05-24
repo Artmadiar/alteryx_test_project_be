@@ -1,7 +1,7 @@
 {
-  "name": "alteryx-backend",
+  "name": "backend-project",
   "version": "1.0.0",
-  "description": "Alteryx Test project: REST API",
+  "description": "Test project: REST API",
   "main": "src/index.ts",
   "scripts": {
     "dev": "nodemon src/index.ts",
@@ -17,14 +17,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Artmadiar/alteryx_test_project_be.git"
+    "url": "git+https://github.com/Artmadiar/test_project_backend.git"
   },
   "author": "artmadiar",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Artmadiar/alteryx_test_project_be/issues"
+    "url": "https://github.com/Artmadiar/test_project_backend/issues"
   },
-  "homepage": "https://github.com/Artmadiar/alteryx_test_project_be#readme",
+  "homepage": "https://github.com/Artmadiar/test_project_backend#readme",
   "devDependencies": {
     "@babel/cli": "^7.13.10",
     "@babel/core": "^7.13.10",
@@ -38,6 +38,7 @@
     "@types/express": "^4.17.11",
     "@types/express-pino-logger": "^4.0.2",
     "@types/jest": "^26.0.22",
+    "@types/node": "^15.6.0",
     "@types/pino": "^6.3.6",
     "@types/validator": "^13.1.3",
     "babel-jest": "^26.6.3",

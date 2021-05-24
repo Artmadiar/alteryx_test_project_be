@@ -1,4 +1,4 @@
-# Test project for Alteryx: Backend
+# Test project: Backend
 
 ## Environment:
 
